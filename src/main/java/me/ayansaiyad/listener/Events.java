@@ -23,21 +23,40 @@ public class Events extends ListenerAdapter {
 
     }
 
+    /**
+     * adds reactions to message events.
+     * @param event the event that triggered the listener.
+     */
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
 
         if (event.getAuthor().isBot()) return;
 
         String message = event.getMessage().getContentRaw();
-        if (message.contains("hi")) {
-            event.getChannel().sendMessage("kys").queue();
-        }
 
-        Emoji snake = Emoji.fromUnicode("1086189984442228756");
+        Emoji snake = Emoji.fromUnicode("U+1F40D");
         if (message.contains("jasper")) {
             event.getMessage().addReaction(snake).queue();
         }
 
+        Emoji monkey = Emoji.fromUnicode("U+1F412");
+        if (message.toLowerCase().contains("momo") || message.toLowerCase().contains("ayan")) {
+            event.getMessage().addReaction(monkey).queue();
+        }
+
+        Emoji[] bomb = {Emoji.fromUnicode("U+1F4A3"), Emoji.fromUnicode("U+1F1F0"), Emoji.fromUnicode("U+1F1FE"), Emoji.fromUnicode("U+1F1F8")};
+        if (message.toLowerCase().contains("beko") || message.toLowerCase().contains("bakir")) {
+            for (Emoji e : bomb) {
+                event.getMessage().addReaction(e).queue();
+            }
+        }
+
+        Emoji[] ecs = {Emoji.fromUnicode("U+1F1EA"), Emoji.fromUnicode("U+1F1E8"), Emoji.fromUnicode("U+1F1F8"), Emoji.fromUnicode("U+2049")};
+        if (message.toLowerCase().contains("ecs") || message.toLowerCase().contains("ec")) {
+            for (Emoji e : ecs) {
+                event.getMessage().addReaction(e).queue();
+            }
+        }
 
     }
 }
