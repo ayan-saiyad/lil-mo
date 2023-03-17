@@ -1,40 +1,49 @@
 package me.ayansaiyad;
 
-import javax.security.auth.login.LoginException;
-
-import net.dv8tion.jda.api.*;
+import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
-import org.jetbrains.annotations.NotNull;
 
-public class lilmo extends ListenerAdapter{
+import javax.security.auth.login.LoginException;
 
-    private final ShardManager shardmanager;
+/**
+ * Initializes the bot and builds the shard manager.
+ */
+public class lilmo {
+
+    private final ShardManager shardManager;
+
+    /**
+     * Loads environment variables and builds the bot shard manager.
+     * @throws LoginException occurs when bot token is invalid.
+     */
     public lilmo() throws LoginException {
-
         String token = System.getenv("lilmo_key");
 
-       DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
-       builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
-        builder.setActivity(Activity.playing("with your mom"));
-        builder.addEventListeners(new lilmo());
-        shardmanager = builder.build();
+        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
+        builder.setStatus(OnlineStatus.ONLINE);
+        builder.setActivity(Activity.watching("TechnoVisionTV"));
+
+        shardManager = builder.build();
     }
 
+    /**
+     * Retrieves the bot shard manager.
+     * @return the ShardManager instance for the bot.
+     */
     public ShardManager getShardManager() {
-        return shardmanager;
+        return shardManager;
     }
 
+    /**
+     * Main method to start the bot.
+     */
     public static void main(String[] args) {
         try {
             lilmo bot = new lilmo();
         } catch (LoginException e) {
-            e.printStackTrace();
+            System.out.println("ERROR: Provided bot token is invalid!");
         }
     }
-
 }
