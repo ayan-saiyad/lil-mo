@@ -3,6 +3,7 @@ package me.ayansaiyad;
 import me.ayansaiyad.listener.Events;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
 
@@ -15,6 +16,7 @@ public class lilmo {
 
     private final ShardManager shardManager;
 
+
     /**
      * Loads environment variables and builds the bot shard manager.
      * @throws LoginException occurs when bot token is invalid.
@@ -25,12 +27,15 @@ public class lilmo {
         DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
         builder.setStatus(OnlineStatus.ONLINE);
         builder.setActivity(Activity.playing("with your mom!!!!!!"));
+        builder.enableIntents(GatewayIntent.MESSAGE_CONTENT);
 
         shardManager = builder.build();
 
         //handle events
         shardManager.addEventListener(new Events());
+
     }
+
 
     /**
      * Retrieves the bot shard manager.
@@ -39,6 +44,7 @@ public class lilmo {
     public ShardManager getShardManager() {
         return shardManager;
     }
+
 
     /**
      * Main method to start the bot.
