@@ -23,7 +23,7 @@ public class lilmo {
 
         DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
         builder.setStatus(OnlineStatus.ONLINE);
-        builder.setActivity(Activity.watching("TechnoVisionTV"));
+        builder.setActivity(Activity.playing("with your mom!!!!!!"));
 
         shardManager = builder.build();
     }
