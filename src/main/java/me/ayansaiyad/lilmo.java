@@ -29,20 +29,12 @@ public class lilmo extends ListenerAdapter{
         return shardmanager;
     }
 
-    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
-        if (event.getAuthor().isBot()) return;
-
-        MessageChannel channel = event.getChannel();
-        String message = event.getMessage().getContentRaw();
-
-        channel.sendMessage("kys").queue();
-
-        if (message.equals("hi")) {
-            channel.sendMessage("kys").queue();
+    public static void main(String[] args) {
+        try {
+            lilmo bot = new lilmo();
+        } catch (LoginException e) {
+            e.printStackTrace();
         }
-        System.out.println("Received message: [" + message + "] from "
-                + event.getAuthor().getName() + "#"
-                + event.getAuthor().getDiscriminator());
     }
 
 }
