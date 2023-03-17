@@ -1,5 +1,6 @@
 package me.ayansaiyad;
 
+import me.ayansaiyad.listener.Events;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
@@ -26,6 +27,9 @@ public class lilmo {
         builder.setActivity(Activity.playing("with your mom!!!!!!"));
 
         shardManager = builder.build();
+
+        //handle events
+        shardManager.addEventListener(new Events());
     }
 
     /**
