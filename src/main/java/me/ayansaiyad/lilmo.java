@@ -1,6 +1,6 @@
 package me.ayansaiyad;
 
-import me.ayansaiyad.listener.Events;
+import me.ayansaiyad.listener.*;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -31,8 +31,11 @@ public class lilmo {
 
         shardManager = builder.build();
 
-        //handle events
-        shardManager.addEventListener(new Events());
+        //handle reactions
+        shardManager.addEventListener(new Reactions());
+
+        //handle messages
+        shardManager.addEventListener(new Messages());
 
     }
 

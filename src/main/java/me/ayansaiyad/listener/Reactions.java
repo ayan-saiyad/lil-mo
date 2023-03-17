@@ -8,15 +8,17 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class Events extends ListenerAdapter {
+public class Reactions extends ListenerAdapter {
     @Override
     public void onMessageReactionAdd(MessageReactionAddEvent event) {
+
+        if (event.getUser().isBot() || event.getUser().getAsTag().equals("momonkey#0020")) return;
+
         User user = event.getUser();
         String emoji = event.getEmoji().getAsReactionCode();
         Channel channel = event.getChannel();
-        String link = event.getJumpUrl();
 
-        String message = user.getAsTag() + " reacted to a message with " + emoji + " in " + channel.getAsMention() + "\n" + link;
+        String message = user.getAsMention() + " reacted to a message with " + emoji + " in " + channel.getAsMention();
 
         //id is the that of the log channel
         event.getGuild().getTextChannelById("1086183814667182090").sendMessage(message).queue();
