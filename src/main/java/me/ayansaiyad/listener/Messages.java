@@ -11,7 +11,7 @@ public class Messages extends ListenerAdapter {
 
         String message = event.getMessage().getContentRaw();
         String user = event.getAuthor().getAsTag();
-        String channel = event.getChannel().getId();
+        String channel = event.getChannel().getAsMention();
 
         if (!user.equals("momonkey#0020") && channel.equals("1052805964551700541")) {
             event.getMessage().delete().queue();
@@ -19,6 +19,6 @@ public class Messages extends ListenerAdapter {
         }
 
         event.getGuild().getTextChannelById("1086533140555776000")
-                .sendMessage("**"+user.split("#")[0] +"**: _"+message + "_").queue();
+                .sendMessage(channel + " - **"+user.split("#")[0] +"**: _"+message + "_").queue();
     }
 }
