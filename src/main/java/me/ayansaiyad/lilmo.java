@@ -37,6 +37,9 @@ public class lilmo {
         //handle messages
         shardManager.addEventListener(new Messages());
 
+        //handle !-commands
+        shardManager.addEventListener(new Commands());
+
     }
 
 
