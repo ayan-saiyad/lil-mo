@@ -9,12 +9,12 @@ public class Commands extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw();
-        String user = event.getAuthor().getAsTag();
 
         if (message.startsWith("!")) {
-            String[] args = message.split(" ");
-            String command = args[0];
-            String[] commandArgs = new String[args.length - 1];
+            String[] line = message.substring(1).split(" ");
+            String command = line[0];
+            String[] args = new String[line.length - 1];
+            System.arraycopy(line, 1, args, 0, args.length);
 
             switch (command) {
                 case "avatar" -> event.getChannel().sendMessage(event.getAuthor().getAvatarUrl()).queue();
@@ -22,8 +22,8 @@ public class Commands extends ListenerAdapter {
                 case "ping" -> event.getChannel().sendMessage("Pong!").queue();
 
                 case "echo" -> {
-                    event.getChannel().sendMessage(String.join(" ", commandArgs)).queue();
-                    System.out.println(String.join(" ", commandArgs));
+                    event.getChannel().sendMessage(String.join(" ", args)).queue();
+                    System.out.println(String.join(" ", args));
                 }
 
                 case "help" -> event.getChannel().sendMessage("```!ping\n!echo <text>\n!avatar <user>```").queue();
