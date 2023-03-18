@@ -20,7 +20,7 @@ public class Reactions extends ListenerAdapter {
 
         String message = user.getAsMention() + " reacted to a message with " + emoji + " in " + channel.getAsMention();
 
-        //id is the that of the log channel
+        //id is that of the log channel
         event.getGuild().getTextChannelById("1086183814667182090").sendMessage(message).queue();
 
     }
