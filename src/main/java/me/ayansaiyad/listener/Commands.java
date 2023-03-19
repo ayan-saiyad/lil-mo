@@ -4,6 +4,8 @@ package me.ayansaiyad.listener;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import java.util.Arrays;
+
 public class Commands extends ListenerAdapter {
 
     @Override
