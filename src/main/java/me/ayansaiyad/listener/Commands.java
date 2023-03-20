@@ -25,13 +25,15 @@ public class Commands extends ListenerAdapter {
                 case "avatar" -> {
                     if(args.length == 0) {
                         event.getChannel().sendMessage(event.getAuthor().getAvatarUrl()).queue();
+                        System.out.println(event.getAuthor());
                     }
                     else {
-                        // Find the user with the specified username
-                        List<User> users = event.getJDA().getUsersByName(args[0], true);
-                        if (users.size() == 1) {
+                        // Find the user with the specified ID
+                        User user = event.getJDA().getUserById(Long.parseLong(args[0].substring(2, args[0].length()-1)));
+
+                        if (user != null) {
                             // Create the message with the avatar URL
-                            event.getChannel().sendMessage(users.get(0).getAvatarUrl()).queue();
+                            event.getChannel().sendMessage(user.getAvatarUrl()).queue();
                         }
                     }
                 }
