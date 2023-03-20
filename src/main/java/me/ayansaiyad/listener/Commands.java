@@ -1,21 +1,14 @@
 package me.ayansaiyad.listener;
 
-
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class Commands extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw();
-        MessageChannel channel = event.getChannel();
         if (message.startsWith("!") && !event.getAuthor().isBot()) {
             String[] line = message.substring(1).split(" ");
             String command = line[0];
@@ -25,7 +18,6 @@ public class Commands extends ListenerAdapter {
                 case "avatar" -> {
                     if(args.length == 0) {
                         event.getChannel().sendMessage(event.getAuthor().getAvatarUrl()).queue();
-                        System.out.println(event.getAuthor());
                     }
                     else {
                         // Find the user with the specified ID
@@ -40,10 +32,7 @@ public class Commands extends ListenerAdapter {
 
                 case "ping" -> event.getChannel().sendMessage("Pong!").queue();
 
-                case "echo" -> {
-                    event.getChannel().sendMessage(String.join(" ", args)).queue();
-                    System.out.println(String.join(" ", args));
-                }
+                case "echo" -> event.getChannel().sendMessage(String.join(" ", args)).queue();
 
                 case "help" -> event.getChannel().sendMessage("```!ping\n!echo <text>\n!avatar <user>```").queue();
 
