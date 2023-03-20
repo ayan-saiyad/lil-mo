@@ -60,5 +60,7 @@ public class Reactions extends ListenerAdapter {
             }
         }
 
+        Emoji[] nerd = {};
+
     }
 }

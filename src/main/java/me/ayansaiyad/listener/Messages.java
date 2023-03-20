@@ -13,7 +13,7 @@ public class Messages extends ListenerAdapter {
         String user = event.getAuthor().getAsTag();
         String channel = event.getChannel().getAsMention();
 
-        if (!user.equals("momonkey#0020") && channel.equals("1052805964551700541")) {
+        if (!user.equals("momonkey#0020") && channel.equals("1086807254549942322")) {
             event.getMessage().delete().queue();
             event.getChannel().sendMessage("You are not allowed to send messages in this channel.").queue();
         }

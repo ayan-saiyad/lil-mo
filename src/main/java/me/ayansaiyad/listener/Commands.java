@@ -16,7 +16,7 @@ public class Commands extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw();
         MessageChannel channel = event.getChannel();
-        if (message.startsWith("!")) {
+        if (message.startsWith("!") && !event.getAuthor().isBot()) {
             String[] line = message.substring(1).split(" ");
             String command = line[0];
             String[] args = new String[line.length - 1];
