@@ -26,7 +26,7 @@ public class lilmo {
 
         DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
         builder.setStatus(OnlineStatus.ONLINE);
-        builder.setActivity(Activity.playing("with your mom!!!!!!"));
+        builder.setActivity(Activity.playing("!!!!!!"));
         builder.enableIntents(GatewayIntent.MESSAGE_CONTENT);
 
         shardManager = builder.build();
